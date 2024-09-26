@@ -2,15 +2,23 @@ pipeline {
     agent any
 
     stages {
-        stage('Get the Code !') {
+        stage('Clonage du dépôt GitHub') {
             steps {
-                git branch: 'main', url: 'https://github.com/csurqunix/OSDetector.git'
+                git branch: 'main', url: 'https://github.com/GetLoloed/OSDetector.git'
             }
         }
 
-        stage('Setting permissions and running the script') {
+        stage('Installation de Python 3.11 et pip') {
             steps {
-                sh 'chmod +x OSDetector.py'
+                sh '''
+                    sudo apt-get update
+                    sudo apt-get install -y python3.11 python3-pip
+                '''
+            }
+        }
+
+        stage('Exécution du script Python') {
+            steps {
                 sh 'python3 OSDetector.py'
             }
         }
