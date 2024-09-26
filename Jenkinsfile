@@ -11,8 +11,8 @@ pipeline {
         stage('Installation de Python 3.11 et pip') {
             steps {
                 sh '''
-                    sudo apt-get update
-                    sudo apt-get install -y python3.11 python3-pip
+                    apt-get update
+                    apt-get install -y python3.11 python3-pip
                 '''
             }
         }
